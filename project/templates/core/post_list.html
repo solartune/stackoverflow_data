@@ -3,8 +3,13 @@
 
 {% block content %}
 
-{{ posts.0.owner.display_name }}
-<table class="ui celled table">
+<div class="ui top attached info teal segment">
+  <a href="{{ posts.0.owner.link }}" target="_blank" class="ui blue ribbon label large">
+    <i class="stack overflow icon"></i>
+    {{ posts.0.owner.display_name }}<div class="detail">{{ posts.0.owner.reputation }} reputation</div>
+  </a>
+</div>
+<table class="ui attached table">
   <thead>
     <tr><th>Post type</th>
     <th>Score</th>
@@ -17,7 +22,7 @@
       <td>{{ post.post_type }}</td>
       <td>{{ post.score }}</td>
       <td>{{ post.creation_date|fromtimestamp }}</td>
-      <td><a href="{{ post.link }}">{{ post.link }}</a></td>
+      <td><a href="{{ post.link }}" target="_blank">{{ post.link }}</a></td>
     </tr>
     {% endfor %}
 
@@ -25,16 +30,33 @@
   <tfoot>
     <tr><th colspan="4">
       <div class="ui right floated pagination menu">
-        <a class="icon item">
+
+        {% if posts.has_previous %}
+          <a href="?page={{ posts.previous_page_number }}" class="icon item">
+            <i class="left chevron icon"></i>
+          </a>
+        {% else %}
+        <a class="icon item disabled">
           <i class="left chevron icon"></i>
         </a>
-        <a class="item">1</a>
-        <a class="item">2</a>
-        <a class="item">3</a>
-        <a class="item">4</a>
-        <a class="icon item">
+        {% endif %}
+        {% for num in posts.paginator.page_range %}
+        {% if posts.number == num %}
+          <a class="item active"> {{ num }} </a>
+          {% else %}
+          <a href="?page={{ num }}" class="item"> {{ num }} </a>
+          {% endif %}
+        {% endfor %}
+        {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}" class="icon item">
           <i class="right chevron icon"></i>
         </a>
+        {% else %}
+        <a class="icon item disabled">
+          <i class="right chevron icon"></i>
+        </a>
+        {% endif %}
+
       </div>
     </th>
   </tr></tfoot>
@@ -42,3 +64,24 @@
 
 
 {% endblock %}
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
