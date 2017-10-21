@@ -6,10 +6,11 @@
 
 {% block content %}
 <div class="ui two column centered grid">
-  <form class="ui column form">
+  <form class="ui column form" action="" method="POST">
+    {% csrf_token %}
   <div class="field">
     <label>User ID at Stack Overflow</label>
-    <input type="number" name="last-name" placeholder="User ID">
+    <input type="number" name="user_id" placeholder="User ID">
   </div>
 
   <button class="ui button" type="submit">Get my posts</button>
