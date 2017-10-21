@@ -1,0 +1,9 @@
+*.pyc
+.DS_Store
+.coverage
+htmlcov/
+notes/
+*.pid
+static_root
+media_root
+db.sqlite3

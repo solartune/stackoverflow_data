@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{{ posts.0.owner.display_name }}
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+
+  <!-- Table -->
+  <table class="table">
+    
+  </table>
+</div>
+{% for post in posts %}
+  {{ post.score }}
+  <div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="{{ post.link }}" class="btn btn-primary" role="button">Open the post</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

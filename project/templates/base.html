@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="{% static 'plugins/semantic-ui/semantic.min.css' %}">
+
+        {# <link rel="stylesheet" type="text/css" href="{% static 'plugins/bootstrap-3.3.7/css/bootstrap.min.css' %}">#}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+        {% block extra_css %}
+        {% endblock %}
+    </head>
+
+    <body>
+        {% include "includes/header.html" %}
+        <div class="ui container">
+        {% block content %}{% endblock %}
+      </div>
+        {# {% include "includes/footer.html" %}#}
+
+        <script type="text/javascript" src="{% static 'plugins/jquery-3.2.1.min.js' %}"></script>
+        {# <script type="text/javascript" src="{% static 'plugins/bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>#}
+        <script src="{% static 'plugins/semantic-ui/semantic.min.js' %}"></script>
+
+        {% block extra_js %}
+        {% endblock %}
+    </body>
+</html>

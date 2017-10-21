@@ -1,0 +1,8 @@
+*.egg-info
+*.pyc
+.coverage
+htmlcov/
+*.pid
+static_root
+media_root
+db.sqlite3

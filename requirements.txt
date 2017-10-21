@@ -1,0 +1,11 @@
+django
+django-nose
+django-extensions
+factory-boy
+nose-progressive
+# psycopg2
+Werkzeug
+gunicorn
+ipython
+
+django-debug-toolbar

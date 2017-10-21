@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{# {% load static %}#}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="ui two column centered grid">
+  <form class="ui column form">
+  <div class="field">
+    <label>User ID at Stack Overflow</label>
+    <input type="number" name="last-name" placeholder="User ID">
+  </div>
+
+  <button class="ui button" type="submit">Get my posts</button>
+</form>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

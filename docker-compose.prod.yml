@@ -1,0 +1,14 @@
+---
+version: '3'
+
+services:
+  postgresql:
+    environment:
+      - POSTGRES_PASSWORD=placeholder
+
+  app:
+    build:
+      dockerfile: Dockerfile
+    command: deploy/sh_scripts/start_server.sh
+    environment:
+      - DB_PASSWORD=placeholder
