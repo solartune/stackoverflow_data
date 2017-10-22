@@ -1,15 +1,16 @@
 from django.views.generic import TemplateView
-from django.urls import reverse
+from django.views.generic.base import RedirectView
 from django.views.generic.edit import FormMixin
+from django.urls import reverse
 from django.conf import settings
+from django.contrib.auth import logout
 
 import requests
 
 from .utils import pagination
 from .forms import UserForm
-import logging
-logger = logging.getLogger('backend')
 
+PROVIDER = 'stackoverflow'
 POSTS_PER_PAGE = 12
 
 
@@ -29,18 +30,29 @@ class HomeView(FormMixin, TemplateView):
         return reverse('post_list', kwargs={'user_id': self.user_id})
 
 
+class LogoutRedirectView(RedirectView):
+
+    def get_redirect_url(self, *args, **kwargs):
+        if self.request.user.is_authenticated():
+            social_user = self.request.user.social_auth \
+                .filter(provider=PROVIDER).first()
+            if not social_user:
+                logout(self.request)
+
+        return reverse('social:begin', args=[PROVIDER])
+
+
 class PostListView(TemplateView):
     template_name = 'core/post_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        logger.info(dir(self.request.user))
         page = self.request.GET.get("page", 1)
         user_id = kwargs.get('user_id')
 
         url = 'https://api.stackexchange.com/2.2/users/{0}/posts' \
               .format(user_id)
-        params = {'site': 'stackoverflow', 'sort': 'creation', 'order': 'desc'}
+        params = {'site': PROVIDER, 'sort': 'creation', 'order': 'desc'}
         response = requests.get(url, params=params)
         posts = response.json()['items']
         context['posts'] = pagination(
@@ -58,7 +70,7 @@ class MyPostListView(TemplateView):
         if not user.is_authenticated() or not user.social_auth:
             return context
 
-        social_user = user.social_auth.filter(provider='stackoverflow').first()
+        social_user = user.social_auth.filter(provider=PROVIDER).first()
         if not social_user:
             return context
 
@@ -68,12 +80,11 @@ class MyPostListView(TemplateView):
 
         url = 'https://api.stackexchange.com/2.2/me/posts'
         params = {
-            'site': 'stackoverflow', 'access_token': access_token,
+            'site': PROVIDER, 'access_token': access_token,
             'key': settings.SOCIAL_AUTH_STACKOVERFLOW_API_KEY
         }
         response = requests.get(url, params=params)
         posts = response.json()
-        logger.info(posts)
         response = requests.get(url, params=params)
         posts = response.json()['items']
         context['posts'] = pagination(

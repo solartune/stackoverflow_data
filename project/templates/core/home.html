@@ -5,18 +5,18 @@
 {% endblock %}
 
 {% block content %}
-<div class="ui two column centered grid">
-  <form class="ui column form" action="" method="POST">
+<div class="ui center aligned basic segment">
+  <form class="ui left icon action input" action="" method="POST">
+    {# <form class="ui column form" action="" method="POST">#}
     {% csrf_token %}
-  <div class="field">
-    <label>User ID at Stack Overflow</label>
-    <input type="number" name="user_id" placeholder="User ID">
+    <i class="search icon"></i>
+      <input type="number" name="user_id"  placeholder="User ID">
+      <button class="ui button make-loading blue" type="submit">Get posts</button>
+  </form>
+  <div class="ui horizontal divider">
+    Or
   </div>
-
-  <button class="ui button" type="submit">Get posts</button>
-  <a href="{% url "social:begin" "stackoverflow" %}" class="ui button">Get my posts</a>
-</form>
+  <a href="{% url "logout_redirect" %}" class="ui labeled icon button make-loading blue"><i class="address card icon"></i> Get my posts</a>
 </div>
-
 
 {% endblock %}
