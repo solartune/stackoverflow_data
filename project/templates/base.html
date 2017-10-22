@@ -17,8 +17,6 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'plugins/semantic-ui/semantic.min.css' %}">
 
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
         {% block extra_css %}
         {% endblock %}
     </head>
@@ -28,7 +26,6 @@
         <div class="ui container">
         {% block content %}{% endblock %}
         </div>
-        {# {% include "includes/footer.html" %}#}
         {% include "includes/modals.html" %}
         <script type="text/javascript" src="{% static 'plugins/jquery-3.2.1.min.js' %}"></script>
         <script src="{% static 'plugins/semantic-ui/semantic.min.js' %}"></script>

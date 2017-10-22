@@ -1,10 +1,11 @@
 <div class="ui small basic test modal">
   <div class="ui icon header">
-    <i class="frown icon"></i>
-    Posts not found
+    <i class="{{ error.icon }} icon"></i>
+    {{ error.caption }}
   </div>
   <div class="ui content">
-      Unfortunately we didn't find any posts for this user.
+      {# Unfortunately we didn't find any posts for this user.#}
+      {{ error.message }}
       You can stay here or back home.
   </div>
   <div class="actions">

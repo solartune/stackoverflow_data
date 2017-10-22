@@ -13,25 +13,25 @@ down-dev:
 	docker-compose -f docker-compose.yml stackoverflow_data-dev down
 
 reload-dev:
-	docker exec -ti stackoverflow_datadev_app_1 deploy/sh_scripts/reload_gunicorn.sh
+	docker exec -ti stackoverflowdatadev_app_1 deploy/sh_scripts/reload_gunicorn.sh
 
 logs-dev:
-	docker logs --tail=200 stackoverflow_datadev_app_1
+	docker logs --tail=200 stackoverflowdatadev_app_1
 
 restart-dev:
-	docker restart stackoverflow_datadev_app_1
+	docker restart stackoverflowdatadev_app_1
 
 shell-dev:
-	docker exec -ti stackoverflow_datadev_app_1 ./manage.py shell_plus
+	docker exec -ti stackoverflowdatadev_app_1 ./manage.py shell_plus
 
 tests-dev:
-	docker exec -ti stackoverflow_datadev_app_1 ./manage.py test
+	docker exec -ti stackoverflowdatadev_app_1 ./manage.py test
 
 cmd-dev:
-	docker exec -ti stackoverflow_datadev_app_1 $(CMD)
+	docker exec -ti stackoverflowdatadev_app_1 $(CMD)
 
 manage-dev:
-	docker exec -ti stackoverflow_datadev_app_1 ./manage.py $(CMD)
+	docker exec -ti stackoverflowdatadev_app_1 ./manage.py $(CMD)
 
 restart-prod:
 	docker restart stackoverflow_dataprod_app_1

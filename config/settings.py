@@ -41,8 +41,23 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'social_django',
+    'django_nose',
 
     'project.apps.core',
+]
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--nocapture',
+    '--nologcapture',
+    '--with-progressive',
+    '--logging-clear-handlers',
+    '--progressive-dim-color=3',
+    '--progressive-function-color=1',
+    '--progressive-bar-filled=3',
+    '--progressive-bar-empty=6',
+    '--progressive-editor=vim',
 ]
 
 MIDDLEWARE = [

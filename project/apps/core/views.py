@@ -9,9 +9,8 @@ import requests
 
 from .utils import pagination
 from .forms import UserForm
-
-PROVIDER = 'stackoverflow'
-POSTS_PER_PAGE = 12
+from .constants import (
+    PROVIDER, POSTS_PER_PAGE, POSTS_NOT_FOUND_ERROR, CONNECTION_ERROR)
 
 
 class HomeView(FormMixin, TemplateView):
@@ -45,8 +44,9 @@ class LogoutRedirectView(RedirectView):
             social_user = self.request.user.social_auth \
                 .filter(provider=PROVIDER).first()
             if not social_user:
+                print('adsad')
                 logout(self.request)
-
+        print('adswqeqe2ad')
         return reverse('social:begin', args=[PROVIDER])
 
 
@@ -63,11 +63,18 @@ class PostListView(TemplateView):
         url = 'https://api.stackexchange.com/2.2/users/{0}/posts' \
               .format(user_id)
         params = {'site': PROVIDER, 'sort': 'creation', 'order': 'desc'}
-        response = requests.get(url, params=params)
+        try:
+            response = requests.get(url, params=params)
+        except requests.ConnectionError:
+            context['error'] = CONNECTION_ERROR
+            return context
+
+        posts = response.json()['items']
+        if not posts:
+            context['error'] = POSTS_NOT_FOUND_ERROR
+            return context
         context['posts'] = pagination(
-            queryset=response.json()['items'],
-            per_page=POSTS_PER_PAGE, page=page
-        )
+            queryset=posts, per_page=POSTS_PER_PAGE, page=page)
         return context
 
 
@@ -96,9 +103,16 @@ class MyPostListView(TemplateView):
             'site': PROVIDER, 'access_token': access_token,
             'key': settings.SOCIAL_AUTH_STACKOVERFLOW_API_KEY
         }
-        response = requests.get(url, params=params)
+        try:
+            response = requests.get(url, params=params)
+        except requests.ConnectionError:
+            context['error'] = CONNECTION_ERROR
+            return context
+
+        posts = response.json()['items']
+        if not posts:
+            context['error'] = POSTS_NOT_FOUND_ERROR
+            return context
         context['posts'] = pagination(
-            queryset=response.json()['items'],
-            per_page=POSTS_PER_PAGE, page=page
-        )
+            queryset=posts, per_page=POSTS_PER_PAGE, page=page)
         return context
