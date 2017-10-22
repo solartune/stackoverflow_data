@@ -1,5 +1,5 @@
 """
-WSGI config for avanan_test project.
+WSGI config for stackoverflow_data project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

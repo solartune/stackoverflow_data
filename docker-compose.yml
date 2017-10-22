@@ -10,16 +10,16 @@ networks:
 services:
   # postgresql:
   #   image: postgres:9.6
-  #   hostname: avanan-postgresql
+  #   hostname: stackoverflow_data-postgresql
   #   networks:
   #     st_network:
   #       aliases:
-  #         - avanan-postgresql
+  #         - stackoverflow_data-postgresql
   #   command: postgres -c max_connections=300
   #   environment:
-  #     - POSTGRES_DB=avanan
-  #     - POSTGRES_USER=avanan
-  #     - POSTGRES_PASSWORD=avanan
+  #     - POSTGRES_DB=stackoverflow_data
+  #     - POSTGRES_USER=stackoverflow_data
+  #     - POSTGRES_PASSWORD=stackoverflow_data
   #   restart: unless-stopped
   #   ports:
   #     - 5432:5432
@@ -33,21 +33,21 @@ services:
       - ./media_root:/usr/src/media_root
       - ./static_root:/usr/src/static_root
     environment:
-      # - DB_NAME=avanan
-      # - DB_USER=avanan
-      # - DB_HOST=avanan-postgresql
-      # - DB_PASSWORD=avanan
+      # - DB_NAME=stackoverflow_data
+      # - DB_USER=stackoverflow_data
+      # - DB_HOST=stackoverflow_data-postgresql
+      # - DB_PASSWORD=stackoverflow_data
       # - DB_PORT=5432
       - DEBUG='true'
     restart: unless-stopped
-    hostname: avanan-app
+    hostname: stackoverflow_data-app
     networks:
       infra_default:
         aliases:
-          - avanan-app
+          - stackoverflow_data-app
       st_network:
         aliases:
-          - avanan-app
+          - stackoverflow_data-app
     ports:
       - 8000:8000
     # depends_on:

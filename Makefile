@@ -1,57 +1,57 @@
 up-dev:
-	docker-compose -f docker-compose.yml -p avanan-dev up -d
+	docker-compose -f docker-compose.yml -p stackoverflow_data-dev up -d
 
 build-dev:
 	docker network create infra_default || true
-	docker network create avanan_network || true
-	docker-compose -f docker-compose.yml -p avanan-dev build
+	docker network create stackoverflow_data_network || true
+	docker-compose -f docker-compose.yml -p stackoverflow_data-dev build
 
 stop-dev:
-	docker-compose -f docker-compose.yml -p avanan-dev stop
+	docker-compose -f docker-compose.yml -p stackoverflow_data-dev stop
 
 down-dev:
-	docker-compose -f docker-compose.yml avanan-dev down
+	docker-compose -f docker-compose.yml stackoverflow_data-dev down
 
 reload-dev:
-	docker exec -ti avanandev_app_1 deploy/sh_scripts/reload_gunicorn.sh
+	docker exec -ti stackoverflow_datadev_app_1 deploy/sh_scripts/reload_gunicorn.sh
 
 logs-dev:
-	docker logs --tail=200 avanandev_app_1
+	docker logs --tail=200 stackoverflow_datadev_app_1
 
 restart-dev:
-	docker restart avanandev_app_1
+	docker restart stackoverflow_datadev_app_1
 
 shell-dev:
-	docker exec -ti avanandev_app_1 ./manage.py shell_plus
+	docker exec -ti stackoverflow_datadev_app_1 ./manage.py shell_plus
 
 tests-dev:
-	docker exec -ti avanandev_app_1 ./manage.py test
+	docker exec -ti stackoverflow_datadev_app_1 ./manage.py test
 
 cmd-dev:
-	docker exec -ti avanandev_app_1 $(CMD)
+	docker exec -ti stackoverflow_datadev_app_1 $(CMD)
 
 manage-dev:
-	docker exec -ti avanandev_app_1 ./manage.py $(CMD)
+	docker exec -ti stackoverflow_datadev_app_1 ./manage.py $(CMD)
 
 restart-prod:
-	docker restart avananprod_app_1
+	docker restart stackoverflow_dataprod_app_1
 
 logs-prod:
-	docker logs --tail=200 avananprod_app_1
+	docker logs --tail=200 stackoverflow_dataprod_app_1
 
 build-prod:
 	docker network create infra_default || true
-	docker network create avanan_network || true
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p avanan-prod build
+	docker network create stackoverflow_data_network || true
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p stackoverflow_data-prod build
 
 shell-prod:
-	docker exec -ti avananprod_app_1 ./manage.py shell_plus
+	docker exec -ti stackoverflow_dataprod_app_1 ./manage.py shell_plus
 
 tests-prod:
-	docker exec -ti avananprod_app_1 ./manage.py test
+	docker exec -ti stackoverflow_dataprod_app_1 ./manage.py test
 
 cmd-prod:
-	docker exec -ti avananprod_app_1 $(CMD)
+	docker exec -ti stackoverflow_dataprod_app_1 $(CMD)
 
 manage-prod:
-	docker exec -ti avananprod_app_1 ./manage.py $(CMD)
+	docker exec -ti stackoverflow_dataprod_app_1 ./manage.py $(CMD)

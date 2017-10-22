@@ -15,6 +15,8 @@ POSTS_PER_PAGE = 12
 
 
 class HomeView(FormMixin, TemplateView):
+    """Show a home page with UserForm."""
+
     template_name = 'core/home.html'
     form_class = UserForm
 
@@ -31,6 +33,12 @@ class HomeView(FormMixin, TemplateView):
 
 
 class LogoutRedirectView(RedirectView):
+    """
+    Check a state of an user.
+
+    If he is authenticated and has no social relation then he should logout
+    and authorize at social provider.
+    """
 
     def get_redirect_url(self, *args, **kwargs):
         if self.request.user.is_authenticated():
@@ -43,6 +51,8 @@ class LogoutRedirectView(RedirectView):
 
 
 class PostListView(TemplateView):
+    """Return all posts of an user."""
+
     template_name = 'core/post_list.html'
 
     def get_context_data(self, **kwargs):
@@ -54,13 +64,16 @@ class PostListView(TemplateView):
               .format(user_id)
         params = {'site': PROVIDER, 'sort': 'creation', 'order': 'desc'}
         response = requests.get(url, params=params)
-        posts = response.json()['items']
         context['posts'] = pagination(
-            queryset=posts, per_page=POSTS_PER_PAGE, page=page)
+            queryset=response.json()['items'],
+            per_page=POSTS_PER_PAGE, page=page
+        )
         return context
 
 
 class MyPostListView(TemplateView):
+    """Return all posts of an authorized user."""
+
     template_name = 'core/post_list.html'
 
     def get_context_data(self, **kwargs):
@@ -84,9 +97,8 @@ class MyPostListView(TemplateView):
             'key': settings.SOCIAL_AUTH_STACKOVERFLOW_API_KEY
         }
         response = requests.get(url, params=params)
-        posts = response.json()
-        response = requests.get(url, params=params)
-        posts = response.json()['items']
         context['posts'] = pagination(
-            queryset=posts, per_page=POSTS_PER_PAGE, page=page)
+            queryset=response.json()['items'],
+            per_page=POSTS_PER_PAGE, page=page
+        )
         return context

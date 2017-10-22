@@ -2,6 +2,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 
 def pagination(queryset, per_page=20, page=1):
+    """Paginate querysets."""
     paginator = Paginator(queryset, per_page)
 
     try:
