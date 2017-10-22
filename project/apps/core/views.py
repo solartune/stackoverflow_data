@@ -44,9 +44,8 @@ class LogoutRedirectView(RedirectView):
             social_user = self.request.user.social_auth \
                 .filter(provider=PROVIDER).first()
             if not social_user:
-                print('adsad')
                 logout(self.request)
-        print('adswqeqe2ad')
+
         return reverse('social:begin', args=[PROVIDER])
 
 
@@ -78,7 +77,7 @@ class PostListView(TemplateView):
         return context
 
 
-class MyPostListView(TemplateView):
+class OAuthPostListView(TemplateView):
     """Return all posts of an authorized user."""
 
     template_name = 'core/post_list.html'

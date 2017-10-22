@@ -100,8 +100,8 @@ SOCIAL_AUTH_STACKOVERFLOW_SECRET = 'deXk4FuSG5Jxz4dZmI5P1Q(('
 SOCIAL_AUTH_STACKOVERFLOW_API_KEY = 'tjGzZLrTNQ*DGzHooRti3w(('
 
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('my_post_list')
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('my_post_list')
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('oauth_post_list')
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('oauth_post_list')
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
