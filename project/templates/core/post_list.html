@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load datetime_converter %}
+{% load static datetime_converter %}
 
 {% block content %}
 <div class="ui breadcrumb">
@@ -66,5 +66,10 @@
   </tr></tfoot>
 </table>
 
+{% endblock %}
 
+{% block extra_js %}
+  {% if not posts %}
+    <script src="{% static 'js/posts.js' %}"></script>
+  {% endif %}
 {% endblock %}
