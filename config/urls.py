@@ -20,4 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('project.apps.core.urls')),
 
+    url('', include('social_django.urls', namespace='social'))
+
 ]

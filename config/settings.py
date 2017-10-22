@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'social_django',
 
     'project.apps.core',
 ]
@@ -72,6 +74,19 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.stackoverflow.StackoverflowOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_STACKOVERFLOW_KEY = '11070'
+SOCIAL_AUTH_STACKOVERFLOW_SECRET = 'deXk4FuSG5Jxz4dZmI5P1Q(('
+SOCIAL_AUTH_STACKOVERFLOW_API_KEY = 'tjGzZLrTNQ*DGzHooRti3w(('
+
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('my_post_list')
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('my_post_list')
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
