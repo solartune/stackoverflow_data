@@ -1,14 +1,12 @@
 ---
-version: '3'
+version: '3.2'
 
 services:
-  postgresql:
-    environment:
-      - POSTGRES_PASSWORD=placeholder
+  # postgresql:
+  #   environment:
+  #     - POSTGRES_PASSWORD=placeholder
 
   app:
-    build:
-      dockerfile: Dockerfile
     command: deploy/sh_scripts/start_server.sh
-    environment:
-      - DB_PASSWORD=placeholder
+    env_file:
+      - variables-prod.env

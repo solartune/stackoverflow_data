@@ -34,24 +34,30 @@ manage-dev:
 	docker exec -ti stackoverflowdatadev_app_1 ./manage.py $(CMD)
 
 restart-prod:
-	docker restart stackoverflow_dataprod_app_1
+	docker restart stackoverflowdataprod_app_1
 
 logs-prod:
-	docker logs --tail=200 stackoverflow_dataprod_app_1
+	docker logs --tail=200 stackoverflowdataprod_app_1
 
 build-prod:
 	docker network create infra_default || true
 	docker network create stackoverflow_data_network || true
 	docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p stackoverflow_data-prod build
 
+up-prod:
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p stackoverflow_data-prod up -d
+
 shell-prod:
-	docker exec -ti stackoverflow_dataprod_app_1 ./manage.py shell_plus
+	docker exec -ti stackoverflowdataprod_app_1 ./manage.py shell_plus
 
 tests-prod:
-	docker exec -ti stackoverflow_dataprod_app_1 ./manage.py test
+	docker exec -ti stackoverflowdataprod_app_1 ./manage.py test
 
 cmd-prod:
-	docker exec -ti stackoverflow_dataprod_app_1 $(CMD)
+	docker exec -ti stackoverflowdataprod_app_1 $(CMD)
 
 manage-prod:
-	docker exec -ti stackoverflow_dataprod_app_1 ./manage.py $(CMD)
+	docker exec -ti stackoverflowdataprod_app_1 ./manage.py $(CMD)
+
+reload-prod:
+	docker exec -ti stackoverflowdataprod_app_1 deploy/sh_scripts/reload_gunicorn.sh

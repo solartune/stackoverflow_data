@@ -32,13 +32,8 @@ services:
       - .:/usr/src/app
       - ./media_root:/usr/src/media_root
       - ./static_root:/usr/src/static_root
-    environment:
-      # - DB_NAME=stackoverflow_data
-      # - DB_USER=stackoverflow_data
-      # - DB_HOST=stackoverflow_data-postgresql
-      # - DB_PASSWORD=stackoverflow_data
-      # - DB_PORT=5432
-      - DEBUG='true'
+    env_file:
+      - variables-dev.env
     restart: unless-stopped
     hostname: stackoverflow_data-app
     networks:
