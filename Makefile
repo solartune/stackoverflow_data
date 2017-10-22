@@ -61,3 +61,6 @@ manage-prod:
 
 reload-prod:
 	docker exec -ti stackoverflowdataprod_app_1 deploy/sh_scripts/reload_gunicorn.sh
+
+stop-prod:
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p stackoverflow_data-dev stop
