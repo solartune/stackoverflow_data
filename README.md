@@ -9,8 +9,17 @@ get all of your posts via OAuth.
 Python=3.6.2 </br>
 Django=1.11.6 </br>
 I use there SQLite database since I don't see any reasons for use another one like Postgres. However you can use it if you want. </br>
+For OAuth I use [Python Social Auth library](https://python-social-auth.readthedocs.io/en/latest/index.html).</br>
 You can change env variables [there](https://github.com/solartune/stackoverflow_data/blob/master/variables-dev.env).</br>
 For production environment you should copy this file, change values and rename the file to `variables-prod.env`.
+
+## Change OAuth data
+As I said before you need to do that in the files of environment variables.
+
+Assotiations according this [documentation](https://python-social-auth.readthedocs.io/en/latest/backends/stackoverflow.html):
+- `SOCIAL_AUTH_STACKOVERFLOW_KEY` - client ID
+- `SOCIAL_AUTH_STACKOVERFLOW_SECRET` - client secret
+- `SOCIAL_AUTH_STACKOVERFLOW_API_KEY` - API key
 
 ## How to run
 
@@ -41,9 +50,9 @@ You can use almost of all commands for manage production containers, just use `p
 
 ## If you can't use Docker
 
-In this case you should use standard Django commands.
-You should have [virtualenv](https://virtualenv.pypa.io/en/stable/)
-I assume that you are in a project directory:
+In this case you should use standard Django commands. </br>
+You should have [virtualenv](https://virtualenv.pypa.io/en/stable/) </br>
+I assume that you are in a directory of the project:
 - `virtualenv env` - create new virtual environment
 - `source env/bin/activate` - activate it
 - `pip install -r requirements` - install all requirements to the environment
