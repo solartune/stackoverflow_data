@@ -6,3 +6,4 @@ htmlcov/
 static_root
 media_root
 db.sqlite3
+variables-prod.env
