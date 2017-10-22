@@ -7,6 +7,7 @@
   <i class="right arrow icon divider"></i>
   <div class="active section">Posts</div>
 </div>
+
 <div class="ui top attached info teal segment">
   <a href="{{ posts.0.owner.link }}" target="_blank" class="ui blue ribbon label large">
     <i class="stack overflow icon"></i>
@@ -31,40 +32,38 @@
     {% endfor %}
 
   </tbody>
-  <tfoot>
-    <tr><th colspan="4">
-      <div class="ui right floated pagination menu">
-
-        {% if posts.has_previous %}
-          <a href="?page={{ posts.previous_page_number }}" class="icon item">
-            <i class="left chevron icon"></i>
-          </a>
-        {% else %}
-        <a class="icon item disabled">
-          <i class="left chevron icon"></i>
-        </a>
-        {% endif %}
-        {% for num in posts.paginator.page_range %}
-        {% if posts.number == num %}
-          <a class="item active"> {{ num }} </a>
-          {% else %}
-          <a href="?page={{ num }}" class="item"> {{ num }} </a>
-          {% endif %}
-        {% endfor %}
-        {% if posts.has_next %}
-        <a href="?page={{ posts.next_page_number }}" class="icon item">
-          <i class="right chevron icon"></i>
-        </a>
-        {% else %}
-        <a class="icon item disabled">
-          <i class="right chevron icon"></i>
-        </a>
-        {% endif %}
-
-      </div>
-    </th>
-  </tr></tfoot>
 </table>
+
+<div class="ui bottom attached info segment">
+  <div class="ui pagination menu">
+    {% if posts.has_previous %}
+      <a href="?page={{ posts.previous_page_number }}" class="icon item">
+        <i class="left chevron icon"></i>
+      </a>
+    {% else %}
+    <a class="icon item disabled">
+      <i class="left chevron icon"></i>
+    </a>
+    {% endif %}
+    {% for num in posts.paginator.page_range %}
+    {% if posts.number == num %}
+      <a class="item active"> {{ num }} </a>
+      {% else %}
+      <a href="?page={{ num }}" class="item"> {{ num }} </a>
+      {% endif %}
+    {% endfor %}
+    {% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}" class="icon item">
+      <i class="right chevron icon"></i>
+    </a>
+    {% else %}
+    <a class="icon item disabled">
+      <i class="right chevron icon"></i>
+    </a>
+    {% endif %}
+
+  </div>
+</div>
 
 {% endblock %}
 

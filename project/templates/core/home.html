@@ -6,6 +6,11 @@
 
 {% block content %}
 <div class="ui center aligned basic segment">
+  <div class="ui piled segment">
+  <h4 class="ui header">Hello!</h4>
+  <p>I glad to see you on this page!</p>
+  <p>Here you can get all posts (questions and answers) for a user from <i class="stack overflow icon"></i> <b>Stackoverflow</b>.</p>
+  <p>For this purpose just type user ID and click the button!</p>
   <form class="ui left icon action input" action="" method="POST">
     {# <form class="ui column form" action="" method="POST">#}
     {% csrf_token %}
@@ -16,7 +21,17 @@
   <div class="ui horizontal divider">
     Or
   </div>
+  <p>You also can get all of your posts.</p>
+  <p>This is very easy action, you just need click the buttom below.</p>
+  <p>Then the system will authorize you at stackoverflow and will return all posts.</p>
+  <p>If you want to chage auth data you can do that in the project settings.</p>
+  <p>
+    That's all what I would liked to say. Have a good day! <i class="smile icon"></i>
+  </p>
   <a href="{% url "logout_redirect" %}" class="ui labeled icon button make-loading blue"><i class="address card icon"></i> Get my posts</a>
+
+</div>
+
 </div>
 
 {% endblock %}

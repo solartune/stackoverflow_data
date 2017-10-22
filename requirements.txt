@@ -4,10 +4,10 @@ django-extensions
 factory-boy
 nose-progressive
 # psycopg2
-Werkzeug
+# Werkzeug
 gunicorn
 ipython
 requests
 social-auth-app-django
 
-django-debug-toolbar
+# django-debug-toolbar
