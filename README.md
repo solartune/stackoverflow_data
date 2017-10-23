@@ -23,10 +23,16 @@ Assotiations according this [documentation](https://python-social-auth.readthedo
 
 ## How to run
 
-With Docker power and make it can be very easy:
+With Docker power and make it can be very easy. </br>
+For dev containers:
 
 - `make build-dev`
+- `make manage-dev CMD=migrate`
 - `make`
+
+Or for production containers:
+- `make build-prod`
+- `make up-pord`
 
 That's all!
 If you can't use make see commands [there](https://github.com/solartune/stackoverflow_data/blob/master/Makefile)
