@@ -14,6 +14,7 @@ You can change env variables [there](https://github.com/solartune/stackoverflow_
 For production environment you should copy this file, change values and rename the file to `variables-prod.env`.
 
 ## Change OAuth data
+For development I use test credentials and unfortunately this user has no posts. So you may need to change this data.
 As I said before you need to do that in the files of environment variables.
 
 Assotiations according this [documentation](https://python-social-auth.readthedocs.io/en/latest/backends/stackoverflow.html):
