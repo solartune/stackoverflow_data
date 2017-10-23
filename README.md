@@ -8,7 +8,7 @@ get all of your posts via OAuth.
 ## Technical details
 Python=3.6.2 </br>
 Django=1.11.6 </br>
-I use there SQLite database since I don't see any reasons for use another one like Postgres. However you can use it if you want. </br>
+I use there SQLite database since I don't see any reasons for use another one like Postgres in this project. However you can use it if you want. </br>
 For OAuth I use [Python Social Auth library](https://python-social-auth.readthedocs.io/en/latest/index.html).</br>
 You can change env variables [there](https://github.com/solartune/stackoverflow_data/blob/master/variables-dev.env).</br>
 For production environment you should copy this file, change values and rename the file to `variables-prod.env`.
