@@ -42,7 +42,7 @@ If you can't use make see commands [there](https://github.com/solartune/stackove
 Below you can see some useful commands for manipulate docker containers via make:
 
 - `make build-dev` - Create networks if they don't exist and build dev images
-- `make` - Run dev containers
+- `make up-dev` - Run dev containers (shortcut `make`)
 - `make stop-dev` - Stop dev containers
 - `make down-dev` - Stop containers and remove containers, networks, volumes, and images
 - `make restart-dev` - Restart the application container
