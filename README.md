@@ -28,8 +28,8 @@ With Docker power and make it can be very easy. </br>
 For dev containers:
 
 - `make build-dev`
-- `make manage-dev CMD=migrate`
 - `make`
+- `make manage-dev CMD=migrate`
 
 Or for production containers:
 - `make build-prod`
